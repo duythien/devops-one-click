@@ -1,0 +1,17 @@
+{
+    "name": "web-webserver",
+    "version": "1.0.0",
+    "description": "A simple Node.js web server connect to MySQL",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js",
+      "test": "npm run lint && mocha",
+      "sonar": "sonar-scanner",
+      "lint": "eslint ."
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "mysql2": "^2.2.5"
+    }
+  }
+

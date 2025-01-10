@@ -1,0 +1,29 @@
+replicaCount: 1
+app_name: app-server
+
+image:
+  repository: 170313592760.dkr.ecr.ap-southeast-1.amazonaws.com/app-server
+  tag: "dev"
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  ports:
+    - name: "nodejs-listener"
+      protocol: "TCP"
+      containerPort: "3000"
+      targetPort: "3000"
+
+env:
+  MYSQL_HOST: mysql-database-chart.default.svc.cluster.local
+  MYSQL_USER: my_user
+  MYSQL_PASSWORD: my_password
+  MYSQL_DATABASE: my_database
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
