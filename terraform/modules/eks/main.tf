@@ -1,4 +1,3 @@
-
 locals {
   common_tags = merge(var.common_tags, {
     TerraformModuleName = "eks-module"
@@ -130,9 +129,6 @@ resource "aws_eks_node_group" "node_group" {
   tags = local.common_tags
 }
 
-## Create Amazon EBS CSI driver for Persistent Volumn on CLuster
-# TLS needed for the thumbprint
-provider "tls" {}
 
 data "tls_certificate" "oidc" {
   url = aws_eks_cluster.main.identity[0].oidc[0].issuer
@@ -201,6 +197,7 @@ provider "helm" {
     token                  = data.aws_eks_cluster_auth.main.token
   }
 }
+
 
 # Install ArgoCD using Helm
 resource "helm_release" "argocd" {
@@ -302,3 +299,5 @@ resource "argocd_application" "app" {
     }
   }
 }
+
+

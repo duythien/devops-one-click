@@ -1,21 +1,21 @@
 
 locals {
   common_tags = {
-    Environment = "dev"
+    Environment = "prod"
     Project     = "iterview"
   }
 }
 
 
 module "vpc" {
-  source      = "./modules/vpc"
+  source      = "../../modules/vpc"
   vpc_cidr    = var.vpc_cidr
   az_count    = var.az_count
   common_tags = local.common_tags
 }
 
 module "eks" {
-  source                   = "./modules/eks"
+  source                   = "../../modules/eks"
   eks_cluster_name         = var.eks_cluster_name
   vpc_id                   = module.vpc.vpc_id
   subnet_ids               = module.vpc.subnet_ids
@@ -33,14 +33,14 @@ module "eks" {
 }
 
 module "web-server-ecr" {
-  source         = "./modules/ecr"
+  source         = "../../modules/ecr"
   ecr_name       = "web-server"
   eks_roles_list = [module.eks.iam_eks_cluster_role_name, module.eks.iam_eks_nodegroup_role_name]
   common_tags    = local.common_tags
 }
 
 module "app-server-ecr" {
-  source         = "./modules/ecr"
+  source         = "../../modules/ecr"
   ecr_name       = "app-server"
   eks_roles_list = [module.eks.iam_eks_cluster_role_name, module.eks.iam_eks_nodegroup_role_name]
   common_tags    = local.common_tags

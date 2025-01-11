@@ -1,0 +1,28 @@
+# .terraform directories
+.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Exclude override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Exclude IDE and editor directories and files
+.vscode/
+.idea/
+
+# Local Terraform files (for example, when using terraform console)
+*.tfvars
+
+# Exclude plan files
+*.tfplan
+
+# Exclude .terraform.lock.hcl
+.terraform.lock.hcl

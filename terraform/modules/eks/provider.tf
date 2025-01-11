@@ -4,10 +4,9 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    argocd = {
+      source  = "argoproj-labs/argocd"
+      version = "7.2.0"
+    }
   }
 }
-
-provider "aws" {
-  region = var.aws_region
-}
-provider "tls" {}
